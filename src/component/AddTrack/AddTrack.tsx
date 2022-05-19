@@ -6,11 +6,11 @@ import AddIcon from '@mui/icons-material/Add';
 import Stack from '@mui/material/Stack';
 
 export function AddTrack() {
-  const {handleAddAlbum} = useContext(AlbumContext);
+  const {handleAddTrack} = useContext(AlbumContext);
 
   return (
     <Stack justifyContent="flex-end" direction="row" spacing={2}>
-      <Button style={{textTransform: 'none'}} variant="contained" startIcon={<AddIcon />} onClick={handleAddAlbum}>
+      <Button style={{textTransform: 'none', backgroundColor: "#000"}} variant="contained" startIcon={<AddIcon />} onClick={handleAddTrack}>
         Adicionar nova faixa
       </Button>
     </Stack>

@@ -10,7 +10,6 @@ import './searchbar.scss'
 
 export function SearchBar() {
     const { searchText, setSearchText, searchAlbum, searchData, setSearchData} = useContext(AlbumContext);
-    console.log(searchText)
 
     return (
         <div className="search-bar">

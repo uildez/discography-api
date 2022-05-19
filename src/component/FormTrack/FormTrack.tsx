@@ -28,48 +28,34 @@ const style = {
 
 export function FormTrack() {
     const {
-        handleAddAlbum,
-        handleCloseAlbum,
+        handleAddTrack,
+        handleCloseTrack,
+        track,
+        number,
+        title,
+        duration,
+        setTrack,
+        setNumber,
+        setTitle,
+        setDuration,
+        handleSubmitTrack
     } = useContext(AlbumContext);
-
-    const [album, setAlbum] = useState('');
-    const [number, setNumber] = useState('');
-    const [title, setTitle] = useState('');
-    const [duration, setDuration] = useState('');
-
-    // function setFormValues(albumTrack, numberTrack, titleTrack, duractionTrack){
-    //     setAlbum(album)
-    //     setNumber(number)
-    //     setTitle(title)
-    //     setDuration(duration)
-    // }
-    
-    function handleSubmitTrack() {
-        event.preventDefault();
-
-        const track = {
-            album_id: album,
-            number: parseInt(number),
-            title: title,
-            duration: parseInt(duration)
-        };
-
-        api.post("track", track)
-    };
     
     return (
         <div>
-            <Dialog open={handleAddAlbum} onClose={handleCloseAlbum} sx={{ style }}>
+            <Dialog open={handleAddTrack} onClose={handleCloseTrack} sx={{ style }}>
                 <DialogTitle>Adicionar Nova Faixa</DialogTitle>
                 <DialogContent>
-                    <TextField fullWidth sx={{ mt: 2 }} value={album} onChange={(e) => { setAlbum(e.target.value); }} type="number" label="Número do Album" id="album_id" />
-                    <TextField fullWidth sx={{ mt: 2 }} value={number} onChange={(e) => { setNumber(e.target.value); }} label="Nome da Faixa" id="number" />
-                    <TextField fullWidth sx={{ mt: 2 }} value={title} onChange={(e) => { setTitle(e.target.value); }} label="Número da Faixa" id="title" />
-                    <TextField fullWidth sx={{ mt: 2 }} value={duration} onChange={(e) => { setDuration(e.target.value); }} label="Duração" id="duration" /> {/* Mudar para ano */}
+                    <TextField fullWidth sx={{ mt: 2 }} value={track} onChange={(e) => setTrack(e.target.value)} type="number" label="Número do Album" id="album_id" />
+                    <TextField fullWidth sx={{ mt: 2 }} value={number} onChange={(e) => setNumber(e.target.value)} label="Número da Faixa" id="number" />
+                    <TextField fullWidth sx={{ mt: 2 }} value={title} onChange={(e) => setTitle(e.target.value)} label="Nome da Faixa" id="title" />
+                    <TextField fullWidth sx={{ mt: 2 }} value={duration} onChange={(e) => setDuration(e.target.value)} label="Duração" id="duration" /> {/* Mudar para ano */}
                 </DialogContent>
                 <DialogActions>
-                    <Button form="my-form-id" variant="contained" endIcon={<CloseIcon />} onClick={handleCloseAlbum} />
-                    <Button style={{ textTransform: 'none' }} type='submit' variant="contained" endIcon={<CheckIcon />} onClick={handleSubmitTrack}>
+                    <Button sx={{ textTransform: 'none', backgroundColor: "#000" }} variant="contained" endIcon={<CloseIcon />} onClick={handleCloseTrack}>
+                        Cancelar    
+                    </Button>
+                    <Button sx={{ textTransform: 'none', backgroundColor: "#000" }} type='submit' variant="contained" endIcon={<CheckIcon />} onClick={handleSubmitTrack}>
                         Enviar
                     </Button>
                 </DialogActions>

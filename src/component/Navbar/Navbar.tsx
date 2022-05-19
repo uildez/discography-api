@@ -8,9 +8,7 @@ export function Navbar() {
     const [toggleMenu, setToggleMenu] = useState(false);
     const Menu = () => (
         <>
-            <p><a href='#'>Albúns</a></p>
-            <p><a href='#'>Faixas</a></p>
-            <p><a href='#'>Código</a></p>
+            <h2>Discografia</h2>
         </>
     )
 
