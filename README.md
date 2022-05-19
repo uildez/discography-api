@@ -11,13 +11,13 @@ Interface acessível para consulta de discografia de Tião Carreiro e Pardinho a
 
 
 ### Pré-requisitos
-# Clone este repositório
+#### Clone este repositório
 $ git clone <https://github.com/tgmarinho/nlw1>
 
-# Instale as dependências
+#### Instale as dependências
 $ yarn dev
 
-# Execute a aplicação em modo de desenvolvimento
+#### Execute a aplicação em modo de desenvolvimento
 $ yarn dev
 
 
@@ -30,5 +30,5 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Axios](https://mui.com/material-ui/)
 
 <h4 align="center"> 
-	🚧 React Select 🚀 Em refinação...  🚧
+	🚧 Discography API 🚀 Em refinação...  🚧
 </h4>
