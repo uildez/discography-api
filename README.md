@@ -15,7 +15,7 @@ https://discography-api.vercel.app/
 
 ### Pré-requisitos
 #### Clone este repositório
-$ git clone <https://github.com/tgmarinho/nlw1>
+$ git clone 
 
 #### Instale as dependências
 $ yarn dev
