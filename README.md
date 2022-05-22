@@ -18,7 +18,7 @@ https://discography-api.vercel.app/
 $ git clone 
 
 #### Instale as dependências
-$ yarn dev
+$ yarn
 
 #### Execute a aplicação em modo de desenvolvimento
 $ yarn dev
