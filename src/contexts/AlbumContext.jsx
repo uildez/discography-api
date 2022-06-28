@@ -1,4 +1,5 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, FormEvent } from 'react';
+
 import { FormAlbum } from '../component/FormAlbum/FormAlbum';
 import { FormTrack } from '../component/FormTrack/FormTrack';
 import api from '../services/api'
@@ -51,18 +52,25 @@ export function AlbumContextProvider({ children }) {
     }
 
 
+
+    
     // Form Track Modal Start
-    function handleAddTrack() {
+    function handleAddTrack(e) {
+        e.preventDefault()
         setOpenFormModal(true);
     }
+    
     function handleCloseTrack() {
         setOpenFormModal(false);
     }
+
     function handleSubmitTrack(event) {
         event.preventDefault();
+        const trackNumber = track.track
+        console.log(trackNumber)
 
         const newTrack = {
-            album_id: parseInt(track),
+            album_id: trackNumber,
             number: parseInt(number),
             title: title,
             duration: parseInt(duration)
@@ -83,13 +91,16 @@ export function AlbumContextProvider({ children }) {
     };
 
 
+
     // Form Album Modal Start
     function handleAdd() {
         setOpenFormModalAlbum(true);
     }
+
     function handleClose() {
         setOpenFormModalAlbum(false);
     }
+
     function handleSubmit(event) {
         event.preventDefault();
 
@@ -114,14 +125,14 @@ export function AlbumContextProvider({ children }) {
 
 
     // Delete Album
-    function handleDeleteAlbum() {
-        var id = prompt("Informe o ID do Álbum");
+    function handleDeleteAlbum(album) {
+        var id = album.album;
         api.delete("album/" + `${id}`)
     }
 
     // Delete Track
-    function handleDeleteTrack() {
-        var id = prompt("Informe o ID do Track");
+    function handleDeleteTrack(track) {
+        var id = track.track;
         api.delete("track/" + `${id}`)
     }
 

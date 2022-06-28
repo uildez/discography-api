@@ -1,130 +1,148 @@
-import React, { useContext } from 'react';
-import { AlbumContext } from '../../contexts/AlbumContext'
+import React, { useContext } from "react";
+import { AlbumContext } from "../../contexts/AlbumContext";
 
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
+import {
+  Table,
+  TableCell,
+  TableContainer,
+  TableRow,
+  Paper,
+  IconButton,
+  Toolbar,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 
-import { AddAlbum } from '../AddAlbum/AddAlbum'
-import { DeleteTrack } from '../DeleteTrack/DeleteTrack'
-import { Typography } from '@mui/material';
-import { AddTrack } from '../AddTrack/AddTrack';
+import DeleteIcon from "@mui/icons-material/Delete";
+
+import { AddAlbum } from "../Buttons/AddAlbum";
+import { DeleteTrack } from "../Buttons/DeleteTrack";
+import { AddTrack } from "../Buttons/AddTrack";
+import { TableSearch } from "./TableSearch";
 
 export function TableAPI() {
-  const { searchData, album } = useContext(AlbumContext);
+  const {
+    searchData,
+    album,
+    handleDeleteTrack,
+    handleDeleteAlbum,
+    setTrack
+  } = useContext(AlbumContext);
 
   return (
     <>
-      <TableContainer component={Paper} sx={{ width: 'auto', padding: '1rem 3rem', overflow: 'hidden', backgroundColor: "transparent", boxShadow: 0 }}>
-        <Table aria-label="simple table">
-          {searchData.length > 0 ?
-            <>
-              {searchData?.map((data) => {
-                return (
-                  <>
-                    <TableContainer>
-                      <Typography variant="h6" component="h2" key={data.id} sx={{ padding: '1rem', fontSize: "1rem", fontWeight: "bold", marginTop: '2rem' }}>
-                        Albúm: {data.name}, {data.year} | ID: {data.id}
+      {searchData.length > 0 ? (
+        <>
+          <TableSearch />
+        </>
+      ) : (
+        <>
+          {album.map((data) => {
+            return (
+              <>
+                <Toolbar
+                  sx={{
+                    display: "flex",
+                    width: "auto",
+                    justify: "space-between",
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      width: "100%",
+                      padding: "1rem 2.5rem",
+                      fontSize: "1rem",
+                      fontWeight: "bold",
+                    }}
+                    variant="h6"
+                    id="tableTitle"
+                    component="div"
+                  >
+                    Albúm: {data.name}, {data.year}
+                  </Typography>
+                  <Tooltip title="Deletar Álbum" arrow>
+                    <IconButton
+                      sx={{
+                        marginRight: "2.5rem",
+                        color: "#fff",
+                        backgroundColor: "#101010",
+                        "&:hover": { backgroundColor: "#ff2418" },
+                      }}
+                      onClick={() => handleDeleteAlbum({ album: data.id })}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </Tooltip>
+                </Toolbar>
 
-                      </Typography>
-                    </TableContainer>
-
-                    {data.tracks.length > 0 ?
+                <TableContainer
+                  component={Paper}
+                  sx={{
+                    width: "auto",
+                    padding: "1rem 3rem",
+                    overflow: "hidden",
+                    backgroundColor: "transparent",
+                    boxShadow: 0,
+                  }}
+                >
+                  {data.tracks.length > 0 ? (
+                    <Table>
+                      <TableRow>
+                        <TableCell>Nº</TableCell>
+                        <TableCell align="right">Faixa</TableCell>
+                        <TableCell align="right">Duração</TableCell>
+                        <TableCell align="right">Acões</TableCell>
+                      </TableRow>
                       <>
-                        <TableRow>
-                          <TableCell>Nº</TableCell>
-                          <TableCell align="right">Faixa</TableCell>
-                          <TableCell align="right">Duração</TableCell>
-                        </TableRow>
                         {data.tracks?.map((track) => (
                           <>
-                            <TableRow key={data.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                              <TableCell component="th" scope="row">{track.id}</TableCell>
+                            <TableRow
+                              key={data.id}
+                              sx={{
+                                "&:last-child td, &:last-child th": {
+                                  border: 0,
+                                },
+                              }}
+                            >
+                              <TableCell component="th" scope="row">
+                                {track.id}
+                              </TableCell>
                               <TableCell align="right">{track.title}</TableCell>
-                              <TableCell align="right">{track.duration}</TableCell>
+                              <TableCell align="right">
+                                {track.duration}
+                              </TableCell>
+                              <TableCell
+                                align="right"
+                                onClick={() =>
+                                  handleDeleteTrack({ track: track.id })
+                                }
+                              >
+                                <DeleteTrack />
+                              </TableCell>
                             </TableRow>
                           </>
                         ))}
-                        <TableBody>
-                          <TableRow>
-                            <TableCell align="right"></TableCell>
-                            <TableCell align="right"><DeleteIcon /></TableCell>
-                            <TableCell align="right"><AddTrack /></TableCell>
-                          </TableRow>
-                        </TableBody>
                       </>
-                      :
-                      <>
-                        <p>Sem Faixas Aqui</p>
-                      </>
-                    }
-                  </>
-                );
-              })}
-              <AddAlbum />
-            </> :
-            <>
-              {album.map((data) => {
-                return (
-                  <>
-                    <TableContainer>
-                      <Typography variant="h6" component="h2" key={data.id} sx={{ padding: '1rem', fontSize: "1rem", fontWeight: "bold", marginTop: '2rem' }}>
-                        Albúm: {data.name}, {data.year} | ID: {data.id}
-                      </Typography>
-                    </TableContainer>
-
-                    {data.tracks.length > 0 ?
-                      <>
-                        <TableRow>
-                          <TableCell>Nº</TableCell>
-                          <TableCell align="right">Faixa</TableCell>
-                          <TableCell align="right">Duração</TableCell>
-                        </TableRow>
-                        {data.tracks?.map((track) => (
-                          <>
-                            <TableRow key={data.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                              <TableCell component="th" scope="row">{track.id}</TableCell>
-                              <TableCell align="right">{track.title}</TableCell>
-                              <TableCell align="right">{track.duration}</TableCell>
-                            </TableRow>
-                          </>
-                        ))}
-                        <TableBody>
-                          <TableRow>
-                            <TableCell align="right"></TableCell>
-                            <TableCell align="right"><DeleteTrack /></TableCell>
-                            <TableCell align="right"><AddTrack /></TableCell>
-                          </TableRow>
-                        </TableBody>
-                      </>
-                      :
-                      <>
-                        <TableRow>
-                          <TableCell>Nenhuma Faixa Disponível</TableCell>
-                          <TableCell align="right"></TableCell>
-                          <TableCell align="right"></TableCell>
-                          <TableCell align="right"><AddTrack /></TableCell>
-                        </TableRow>
-                      </>
-                    }
-                  </>
-                );
-              })}
-            </>
-          }
-        </Table >
+                    </Table>
+                  ) : (
+                    <>
+                      <TableRow>
+                        <TableCell>Sem Faixas aqui</TableCell>
+                      </TableRow>
+                    </>
+                  )}
+                </TableContainer>
+                <div onClick={() => setTrack({ track: data.id })}>
+                  <AddTrack />
+                </div>
+              </>
+            );
+          })}
+        </>
+      )}
+      <div className="wrap">
         <AddAlbum />
-      </TableContainer >
+      </div>
     </>
   );
-
 }
-
-
-
-//
