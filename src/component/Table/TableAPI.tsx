@@ -21,13 +21,21 @@ import { AddTrack } from "../Buttons/AddTrack";
 import { TableSearch } from "./TableSearch";
 
 export function TableAPI() {
-  const {
-    searchData,
-    album,
-    handleDeleteTrack,
-    handleDeleteAlbum,
-    setTrack
-  } = useContext(AlbumContext);
+  const { searchData, album, handleDeleteTrack, handleDeleteAlbum, setTrack } =
+    useContext(AlbumContext);
+
+  function formatDuration(duration) {
+    const totalSeconds = duration.duration;
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    
+    function padTo2Digits(num) {
+      return num.toString().padStart(2, "0");
+    }
+
+    const result = `${padTo2Digits(minutes)}:${padTo2Digits(seconds)}`;
+    return result;
+  }
 
   return (
     <>
@@ -109,7 +117,7 @@ export function TableAPI() {
                               </TableCell>
                               <TableCell align="right">{track.title}</TableCell>
                               <TableCell align="right">
-                                {track.duration}
+                                {`${formatDuration({duration: track.duration})}`}
                               </TableCell>
                               <TableCell
                                 align="right"
