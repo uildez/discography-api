@@ -19,7 +19,7 @@ import { DeleteTrack } from "../Buttons/DeleteTrack";
 import { AddTrack } from "../Buttons/AddTrack";
 
 export function TableSearch() {
-  const { searchData, setTrack, handleDeleteTrack, handleDeleteAlbum } =
+  const { searchData, setTrack, handleDeleteTrack, handleDeleteAlbum, formatDuration } =
     useContext(AlbumContext);
 
   return (
@@ -96,7 +96,7 @@ export function TableSearch() {
                             </TableCell>
                             <TableCell align="right">{track.title}</TableCell>
                             <TableCell align="right">
-                              {track.duration}
+                              {`${formatDuration({duration: track.duration})}`}
                             </TableCell>
                             <TableCell
                               align="right"
@@ -119,9 +119,6 @@ export function TableSearch() {
                 <AddTrack />
               </div>
             </>
-            <div className="wrap">
-              <AddTrack />
-            </div>
           </>
         );
       })}

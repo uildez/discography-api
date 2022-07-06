@@ -21,12 +21,16 @@ export function AlbumContextProvider({ children }) {
   const [album, setAlbum] = useState([]);
   const [dataAPI, setDataAPI] = useState({});
 
-  useEffect(() => {
+  function getAlbums() {
     api.get("album").then(({ data }) => {
       setAlbum(data.data);
     })
     .catch((error) => console.log(error));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    console.log(album)
+  }
+
+  useEffect(() => {
+    getAlbums()
   }, []);
 
 
@@ -88,9 +92,9 @@ export function AlbumContextProvider({ children }) {
         (error) => {
           console.log(error);
         }
-      );
+      ).then(() => getAlbums())
 
-    handleCloseTrack;
+      setOpenFormModal(false);
   }
 
   // Form Album Modal Start
@@ -123,22 +127,37 @@ export function AlbumContextProvider({ children }) {
         (error) => {
           console.log(error);
         }
-      );
-    console.log(album);
-    handleClose;
+      ).then(() => getAlbums())
+    setOpenFormModalAlbum(false);
   }
 
   // Delete Album
   function handleDeleteAlbum(album) {
     var id = album.album;
-    api.delete("album/" + `${id}`);
+    api.delete("album/" + `${id}`).then(() => getAlbums())
   }
 
   // Delete Track
   function handleDeleteTrack(track) {
     var id = track.track;
-    api.delete("track/" + `${id}`);
+    api.delete("track/" + `${id}`).then(() => getAlbums())
+    alert("Faixa Deletada")
   }
+
+
+  function formatDuration(duration) {
+    const totalSeconds = duration.duration;
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    
+    function padTo2Digits(num) {
+      return num.toString().padStart(2, "0");
+    }
+
+    const result = `${padTo2Digits(minutes)}:${padTo2Digits(seconds)}`;
+    return result;
+  }
+
 
   return (
     <AlbumContext.Provider
@@ -178,6 +197,7 @@ export function AlbumContextProvider({ children }) {
 
         handleDeleteAlbum,
         handleDeleteTrack,
+        formatDuration
       }}
     >
       {children}

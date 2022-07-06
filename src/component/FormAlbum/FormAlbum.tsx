@@ -19,8 +19,7 @@ const style = {
 };
 
 export function FormAlbum() {
-  const { handleClose, handleSubmit, name, year, setName, setYear } =
-    useContext(AlbumContext);
+  const { handleClose, handleSubmit, name, year, setName, setYear } = useContext(AlbumContext);
 
   return (
     <Dialog
@@ -39,6 +38,7 @@ export function FormAlbum() {
             onChange={(e) => setName(e.target.value)}
             label="Título do Album"
             id="name"
+            required
           />
           <TextField
             fullWidth
@@ -47,7 +47,10 @@ export function FormAlbum() {
             onChange={(e) => setYear(e.target.value)}
             label="Ano"
             id="year"
+            type="number"
+            required
           />
+          
           <Box
             sx={{ mt: 3, display: "flex", justifyContent: "flex-end", gap: 4 }}
           >
