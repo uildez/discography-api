@@ -9,11 +9,11 @@ import './searchbar.scss'
 
 
 export function SearchBar() {
-    const { searchText, setSearchText, searchAlbum, searchData, setSearchData} = useContext(AlbumContext);
+    const { setSearchText, searchAlbum } = useContext(AlbumContext);
 
     return (
         <div className="search-bar">
-            <Paper component="form" sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}>
+            <Paper component="form" sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400, border: 1, boxShadow: 3 }}>
                 <InputBase
                     sx={{ ml: 1, flex: 1 }}
                     placeholder="Digite sua pesquisa"

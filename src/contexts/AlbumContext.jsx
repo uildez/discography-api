@@ -141,7 +141,6 @@ export function AlbumContextProvider({ children }) {
   function handleDeleteTrack(track) {
     var id = track.track;
     api.delete("track/" + `${id}`).then(() => getAlbums())
-    alert("Faixa Deletada")
   }
 
 

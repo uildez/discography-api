@@ -24,19 +24,6 @@ export function TableAPI() {
   const { searchData, album, handleDeleteTrack, handleDeleteAlbum, setTrack, formatDuration } =
     useContext(AlbumContext);
 
-  // function formatDuration(duration) {
-  //   const totalSeconds = duration.duration;
-  //   const minutes = Math.floor(totalSeconds / 60);
-  //   const seconds = totalSeconds % 60;
-    
-  //   function padTo2Digits(num) {
-  //     return num.toString().padStart(2, "0");
-  //   }
-
-  //   const result = `${padTo2Digits(minutes)}:${padTo2Digits(seconds)}`;
-  //   return result;
-  // }
-
   return (
     <>
       {searchData.length > 0 ? (
@@ -48,17 +35,20 @@ export function TableAPI() {
           {album.map((data) => {
             return (
               <>
-                <Toolbar
+                <Toolbar key={data.id}
                   sx={{
                     display: "flex",
                     width: "auto",
                     justify: "space-between",
+                    padding: "1rem 4rem!important",
+                    ['@media (max-width:780px)']: { // eslint-disable-line no-useless-computed-key
+                      padding: "1rem 2rem!important"
+                    }
                   }}
                 >
                   <Typography
                     sx={{
                       width: "100%",
-                      padding: "1rem 2.5rem",
                       fontSize: "1rem",
                       fontWeight: "bold",
                     }}
@@ -71,7 +61,6 @@ export function TableAPI() {
                   <Tooltip title="Deletar Álbum" arrow>
                     <IconButton
                       sx={{
-                        marginRight: "2.5rem",
                         color: "#fff",
                         backgroundColor: "#101010",
                         "&:hover": { backgroundColor: "#ff2418" },
@@ -91,14 +80,17 @@ export function TableAPI() {
                     overflow: "hidden",
                     backgroundColor: "transparent",
                     boxShadow: 0,
+                    ['@media (max-width:780px)']: { // eslint-disable-line no-useless-computed-key
+                      padding: "1rem"
+                    }
                   }}
                 >
                   {data.tracks.length > 0 ? (
-                    <Table>
+                    <Table key={data.id}>
                       <TableRow>
                         <TableCell>Nº</TableCell>
-                        <TableCell align="right">Faixa</TableCell>
-                        <TableCell align="right">Duração</TableCell>
+                        <TableCell align="left">Faixa</TableCell>
+                        <TableCell align="left">Duração</TableCell>
                         <TableCell align="right">Acões</TableCell>
                       </TableRow>
                       <>
@@ -113,10 +105,10 @@ export function TableAPI() {
                               }}
                             >
                               <TableCell component="th" scope="row">
-                                {track.id}
+                                {track.number}
                               </TableCell>
-                              <TableCell align="right">{track.title}</TableCell>
-                              <TableCell align="right">
+                              <TableCell align="left">{track.title}</TableCell>
+                              <TableCell align="left">
                                 {`${formatDuration({duration: track.duration})}`}
                               </TableCell>
                               <TableCell
@@ -140,7 +132,7 @@ export function TableAPI() {
                     </>
                   )}
                 </TableContainer>
-                <div onClick={() => setTrack({ track: data.id })}>
+                <div className="addButton" onClick={() => setTrack({ track: data.id })}>
                   <AddTrack />
                 </div>
               </>

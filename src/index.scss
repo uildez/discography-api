@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 body {
   margin: 0;
   padding: 0;
@@ -7,11 +9,43 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+.App {
+  min-height: 100vh;
+  background-image: url(./assets/images/background.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: 2rem 4rem;
+  overflow: hidden;
 }
 
+.content {
+  background-color: rgba($color: #fff, $alpha: 0.8);
+  border-radius: 20px;
+  min-height: 90vh;
+  width: 100%;
+}
+
+@media screen and (max-width: 1050px) {
+  .App {
+    min-height: 100vh;
+    padding: 1rem 1.5rem;
+  }
+}
+
+// Tables and button
 .wrap{
   padding: 2rem 4rem;
 }
+ 
+.addButton{
+  margin-right: 0rem;
+}
+
+@media screen and (max-width:780px) {
+  .addButton{
+    margin-right: -2rem;
+  }  
+}
+

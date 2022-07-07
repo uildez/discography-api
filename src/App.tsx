@@ -1,6 +1,6 @@
 import { Content } from './component/Content/Content'
 import { Navbar } from './component/Navbar/Navbar'
-import './style/App.scss'
+import './index.scss'
 
 import { AlbumContextProvider } from './contexts/AlbumContext'
 

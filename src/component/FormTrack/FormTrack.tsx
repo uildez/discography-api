@@ -1,13 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AlbumContext } from "../../contexts/AlbumContext";
 
 import CloseIcon from "@mui/icons-material/Close";
 import CheckIcon from "@mui/icons-material/Check";
 
-import { Button, TextField, Dialog, DialogContent, Box, InputAdornment } from "@mui/material";
-import { Circle } from "phosphor-react";
+import {
+  Button,
+  TextField,
+  Dialog,
+  DialogContent,
+  Box,
+  InputAdornment,
+  Typography,
+} from "@mui/material";
 
 export function FormTrack() {
+  const [minutes, setMinutes] = useState("");
+  const [seconds, setSeconds] = useState("");
+
   const {
     handleCloseTrack,
     number,
@@ -18,6 +28,13 @@ export function FormTrack() {
     setDuration,
     handleSubmitTrack,
   } = useContext(AlbumContext);
+
+  function setDurationTimer() {
+    const min = parseInt(minutes) * 60;
+    const timer = min + parseInt(seconds);
+    setDuration(timer);
+  }
+  setDurationTimer();
 
   return (
     <Dialog fullWidth maxWidth="md" open={true} onClose={handleCloseTrack}>
@@ -42,23 +59,47 @@ export function FormTrack() {
             id="title"
             required
           />
-          <TextField
-            fullWidth
-            sx={{ mt: 2 }}
-            value={duration}
-            onChange={(e) => setDuration(e.target.value)}
-            label="Duração"
-            id="duration"
-            type="number"
-            required
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  min
-                </InputAdornment>
-              ),
+          <Typography
+            sx={{
+              fontSize: "1rem",
+              fontWeight: "bold",
+              marginTop: "1rem",
+              marginBottom: "0rem",
             }}
-          />
+            variant="h6"
+          >
+            Duração da faixa
+          </Typography>
+          <Box sx={{ display: "flex", gap: 2 }}>
+            <TextField
+              fullWidth
+              sx={{ mt: 2 }}
+              value={minutes}
+              onChange={(e) => setMinutes(e.target.value)}
+              label="Minutos"
+              type="number"
+              required
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">min</InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              fullWidth
+              sx={{ mt: 2 }}
+              value={seconds}
+              onChange={(e) => setSeconds(e.target.value)}
+              label="Segundos"
+              type="number"
+              required
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">seg</InputAdornment>
+                ),
+              }}
+            />
+          </Box>
           <Box
             sx={{ mt: 3, display: "flex", justifyContent: "flex-end", gap: 4 }}
           >

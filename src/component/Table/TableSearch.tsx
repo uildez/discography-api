@@ -19,8 +19,13 @@ import { DeleteTrack } from "../Buttons/DeleteTrack";
 import { AddTrack } from "../Buttons/AddTrack";
 
 export function TableSearch() {
-  const { searchData, setTrack, handleDeleteTrack, handleDeleteAlbum, formatDuration } =
-    useContext(AlbumContext);
+  const {
+    searchData,
+    setTrack,
+    handleDeleteTrack,
+    handleDeleteAlbum,
+    formatDuration,
+  } = useContext(AlbumContext);
 
   return (
     <>
@@ -32,12 +37,16 @@ export function TableSearch() {
                 display: "flex",
                 width: "auto",
                 justify: "space-between",
+                padding: "1rem 4rem!important",
+                ["@media (max-width:780px)"]: {
+                  // eslint-disable-line no-useless-computed-key
+                  padding: "1rem 2rem!important",
+                },
               }}
             >
               <Typography
                 sx={{
                   width: "100%",
-                  padding: "1rem 2.5rem",
                   fontSize: "1rem",
                   fontWeight: "bold",
                 }}
@@ -50,7 +59,6 @@ export function TableSearch() {
               <Tooltip title="Deletar Álbum" arrow>
                 <IconButton
                   sx={{
-                    marginRight: "2.5rem",
                     color: "#fff",
                     backgroundColor: "#101010",
                     "&:hover": { backgroundColor: "#ff2418" },
@@ -70,6 +78,10 @@ export function TableSearch() {
                   overflow: "hidden",
                   backgroundColor: "transparent",
                   boxShadow: 0,
+                  ["@media (max-width:780px)"]: {
+                    // eslint-disable-line no-useless-computed-key
+                    padding: "1rem",
+                  },
                 }}
               >
                 {data.tracks.length > 0 ? (
@@ -92,11 +104,13 @@ export function TableSearch() {
                             }}
                           >
                             <TableCell component="th" scope="row">
-                              {track.id}
+                              {track.number}
                             </TableCell>
                             <TableCell align="right">{track.title}</TableCell>
                             <TableCell align="right">
-                              {`${formatDuration({duration: track.duration})}`}
+                              {`${formatDuration({
+                                duration: track.duration,
+                              })}`}
                             </TableCell>
                             <TableCell
                               align="right"
