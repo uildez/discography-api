@@ -1,4 +1,4 @@
-<h1 align="center" color="white"><img height="40" valign="top" src="./src/assets/images/logo.png"/>  Photo<strong>Book</strong></h1>
+<h1 align="center" color="white">Photo<strong>Book</strong></h1>
 
 <div align="center"><img src="./src/assets/discography.gif" width="900"/></div>
 <h2 align="center"><a color="white" href="https://discography-api.vercel.app/">Acess PhotoBook</a></h2> 
