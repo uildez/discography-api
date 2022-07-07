@@ -1,7 +1,7 @@
-<h1 align="center" color="white">Photo<strong>Book</strong></h1>
+<h1 align="center" color="white">Tião Carreiro and Pardinho | Discography API</strong></h1>
 
 <div align="center"><img src="./src/assets/discography.gif" width="900"/></div>
-<h2 align="center"><a color="white" href="https://discography-api.vercel.app/">Acess PhotoBook</a></h2> 
+<h2 align="center"><a color="white" href="https://discography-api.vercel.app/">Acess Discography API</a></h2> 
 
 ### 📕 About
 **Tião Carreiro and Pardinho | Discography API** is a accessible interface for consulting Tião Carreiro and Pardinho discography through API developed in React Js, SASS, Material UI, Context API and Axios to perform API requests.
