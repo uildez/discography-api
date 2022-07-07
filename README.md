@@ -1,37 +1,43 @@
-# Tião Carreiro and Pardinho | Discography API
-Interface acessível para consulta de discografia de Tião Carreiro e Pardinho através de API desenvolvida em React Js, SASS, Material UI, Context API a Axios para realizar as requisições a API.
+<h1 align="center" color="white"><img height="40" valign="top" src="./src/assets/images/SVG/logo-light.svg"/>  Photo<strong>Book</strong></h1>
 
-### Link para Acessar Projeto:
-https://discography-api.vercel.app/
+<div align="center"><img src="./src/assets/discography.gif" width="900"/></div>
+<h2 align="center"><a color="white" href="https://discography-api.vercel.app/">Acess PhotoBook</a></h2> 
 
-### Features
-- [x]  Ver lista de álbuns e faixas
-- [x]  Pesquisar álbuns por nome
-- [x]  Adicionar um novo álbum
-- [x]  Adicionar uma nova faixa em um álbum
-- [x]  Excluir uma faixa
-- [x]  Excluir um álbum
+### 📕 About
+**Tião Carreiro and Pardinho | Discography API** is a accessible interface for consulting Tião Carreiro and Pardinho discography through API developed in React Js, SASS, Material UI, Context API and Axios to perform API requests.
 
+### ⚙️ Features
+- [x] View list of albums and tracks
+- [x] Search albums by name
+- [x] Add a new album
+- [x] Add a new track to an album
+- [x] Delete a track
+- [x] Delete an album
 
-### Pré-requisitos
-#### Clone este repositório
-$ git clone 
+### Prerequisites
+```bash
+  #### Clone this repository
+  $ git clone "https://github.com/uildez/photobook.git"
+```
 
-#### Instale as dependências
-$ yarn
+```bash
+  #### Install dependencies
+  $ npm
+```
 
-#### Execute a aplicação em modo de desenvolvimento
-$ yarn dev
+```bash
+  #### Run the application in development mode
+  $ npm run dev
+```
 
-
-### 🛠 Tecnologias
-As seguintes ferramentas foram usadas na construção do projeto:
+### 🛠 Technologies
+The following tools were used in building the project:
 - [React](https://pt-br.reactjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [SASS](https://sass-lang.com/documentation)
 - [MaterialUI](https://mui.com/material-ui/)
 - [Axios](https://mui.com/material-ui/)
 
-<h4 align="center"> 
-	🚧 Discography API 🚀 Em refinação...  🚧
+<h4 align="center">
+🚧 Tião Carreiro and Pardinho | Discography API 🚀 In refinement... 🚧
 </h4>

@@ -45,16 +45,11 @@ export function AlbumContextProvider({ children }) {
       .get("album?keyword=" + searchText + "&limit=10&page=1")
       .then(function (response) {
         setSearchData(response.data.data);
-        if (searchData.length > 0) {
-          return;
-        } else {
-          null;
-        }
+        console.log(response.data.data)
       })
       .catch(function (error) {
         console.log(error);
       });
-    const searchData = JSON.parse(searchData);
   }
 
   // Form Track Modal Start
@@ -92,7 +87,7 @@ export function AlbumContextProvider({ children }) {
         (error) => {
           console.log(error);
         }
-      ).then(() => getAlbums())
+      ).then(() => getAlbums()).then(() => searchAlbum())
 
       setOpenFormModal(false);
   }
@@ -127,20 +122,21 @@ export function AlbumContextProvider({ children }) {
         (error) => {
           console.log(error);
         }
-      ).then(() => getAlbums())
+      ).then(() => getAlbums()).then(() => searchAlbum())
     setOpenFormModalAlbum(false);
   }
 
   // Delete Album
   function handleDeleteAlbum(album) {
     var id = album.album;
-    api.delete("album/" + `${id}`).then(() => getAlbums())
+    console.log(album.album)
+    api.delete("album/" + `${id}`).then(() => getAlbums()).then(() => searchAlbum())
   }
 
   // Delete Track
   function handleDeleteTrack(track) {
     var id = track.track;
-    api.delete("track/" + `${id}`).then(() => getAlbums())
+    api.delete("track/" + `${id}`).then(() => getAlbums()).then(() => searchAlbum())
   }
 
 
